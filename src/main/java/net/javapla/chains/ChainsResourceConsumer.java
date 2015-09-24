@@ -3,11 +3,11 @@ package net.javapla.chains;
 import net.javapla.chains.executors.ExecuteVoid;
 import net.javapla.chains.function.ThrowingConsumer;
 
-public class ChainsResourceConsumer<A extends AutoCloseable> extends AbstractChains<ThrowingConsumer<A>, ChainsResourceConsumer<A>> implements ExecuteVoid {
+public final class ChainsResourceConsumer<A extends AutoCloseable> extends AbstractChains<ThrowingConsumer<A>, ChainsResourceConsumer<A>> implements ExecuteVoid {
 
     
-    protected final A au;
-    protected ChainsResourceConsumer(ThrowingConsumer<A> r, A au) {
+    private final A au;
+    ChainsResourceConsumer(ThrowingConsumer<A> r, A au) {
         super(r);
         this.au = au;
     }

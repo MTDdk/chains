@@ -7,10 +7,10 @@ import net.javapla.chains.function.ThrowingFunction;
 
 //R = return value
 //A = autocloseable
-public class ChainsResourceFunction<R, A extends AutoCloseable> extends AbstractChains<ThrowingFunction<A, R>, ChainsResourceFunction<R, A>> implements ExecuteReturn<R> {
+public final class ChainsResourceFunction<R, A extends AutoCloseable> extends AbstractChains<ThrowingFunction<A, R>, ChainsResourceFunction<R, A>> implements ExecuteReturn<R> {
 
-    protected final A au;
-    protected ChainsResourceFunction(ThrowingFunction<A, R> r, A au) {
+    private final A au;
+    ChainsResourceFunction(ThrowingFunction<A, R> r, A au) {
         super(r);
         this.au = au;
     }
