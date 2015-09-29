@@ -2,16 +2,34 @@ package net.javapla.chains;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.Queue;
 import java.util.function.Consumer;
 
+import net.javapla.chains.interfaces.Exceptional;
 
-public abstract class AbstractChains<S, R> {
+abstract class AbstractChains<T, R> implements Exceptional<T> {
     
-    protected final S runner;
-    protected AbstractChains(S r) {
-        runner = r;
+    protected final Queue<AutoCloseable> closeableStack;
+    protected AbstractChains(Queue<AutoCloseable> closeableStack) {
+        this.closeableStack = closeableStack;
     }
- 
+    
+    protected void addToStack(AutoCloseable a) {
+        closeableStack.add(a);
+    }
+    protected void closeAll() {
+        closeableStack.forEach((auto) -> {
+            try {
+                auto.close();
+            } catch (Exception e) {
+                handleException(e);
+            }
+        });
+    }
+    
+    protected abstract Optional<R> internalExecute();
+
     protected final HashMap<Class<? extends Throwable>, Consumer<? super Throwable>> throwables = new HashMap<>();
     /**
      * 
@@ -20,12 +38,12 @@ public abstract class AbstractChains<S, R> {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public <T extends Throwable> R exception(Consumer<? super Throwable> c, Class<T> ... t) {
-        for (Class<T> clazz : t) {
+    public <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> ... t) {
+        for (Class<S> clazz : t) {
             throwables.put(clazz, c);
         }
         
-        return (R) this;
+        return (T) this;
     }
     
     /**
@@ -35,9 +53,9 @@ public abstract class AbstractChains<S, R> {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public <T extends Throwable> R exception(Consumer<? super Throwable> c, Class<T> t) {
+    public <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> t) {
         throwables.put(t, c);
-        return (R) this;
+        return (T) this;
     }
     
     /**
@@ -46,9 +64,9 @@ public abstract class AbstractChains<S, R> {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public <T extends Throwable> R exception(Consumer<? super Throwable> c) {
+    public <S extends Throwable> T exception(Consumer<? super Throwable> c) {
         throwables.put(null, c);
-        return (R) this;
+        return (T) this;
     }
     
     protected final void handleException(Throwable e) throws RuntimeException {

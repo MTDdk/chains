@@ -1,6 +1,6 @@
 package net.javapla.chains;
 
-import static net.javapla.chains.Chains.*;
+import static net.javapla.chains.Try.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class ChainsRunnableTest /*implements Chains*/ {
+public class TryRunnableTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
