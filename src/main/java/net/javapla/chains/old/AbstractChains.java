@@ -1,4 +1,4 @@
-package net.javapla.chains;
+package net.javapla.chains.old;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.function.Consumer;
 
-import net.javapla.chains.newinterfaces.Exceptional;
+import net.javapla.chains.interfaces.Exceptional;
 
 abstract class AbstractChains<T, R> implements Exceptional<T> {
     
@@ -31,26 +31,40 @@ abstract class AbstractChains<T, R> implements Exceptional<T> {
     protected abstract Optional<R> internalExecute();
 
     protected final HashMap<Class<? extends Throwable>, Consumer<? super Throwable>> throwables = new HashMap<>();
-    
-    @Override
+    /**
+     * 
+     * @param c
+     * @param t
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> ... t) {
         for (Class<S> clazz : t) {
             throwables.put(clazz, c);
         }
+        
         return (T) this;
     }
     
-    @Override
+    /**
+     * Single parameter to reduce overhead
+     * @param c
+     * @param t
+     * @return
+     */
     @SuppressWarnings("unchecked")
     public <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> t) {
         throwables.put(t, c);
         return (T) this;
     }
     
-    @Override
+    /**
+     * Catch-all
+     * @param c
+     * @return
+     */
     @SuppressWarnings("unchecked")
-    public T exception(Consumer<? super Throwable> c) {
+    public <S extends Throwable> T exception(Consumer<? super Throwable> c) {
         throwables.put(null, c);
         return (T) this;
     }

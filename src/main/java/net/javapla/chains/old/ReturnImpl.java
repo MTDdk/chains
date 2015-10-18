@@ -1,11 +1,11 @@
-package net.javapla.chains;
+package net.javapla.chains.old;
 
 import java.util.Optional;
 import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingSupplier;
 
-class ReturnImpl<R, E> extends AbstractReturn<R, E/*NormalReturn<R>*/> {
+class ReturnImpl<R> extends AbstractReturn<R> {
 
     ThrowingSupplier<R> runner;
     ReturnImpl(ThrowingSupplier<R> r, Queue<AutoCloseable> closeableStack) {

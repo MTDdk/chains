@@ -12,7 +12,7 @@ import static org.mockito.Mockito.verify;
 import java.io.PrintStream;
 import java.util.stream.IntStream;
 
-import net.javapla.chains.Try;
+import net.javapla.chains.old.Try;
 
 import org.junit.After;
 import org.junit.BeforeClass;

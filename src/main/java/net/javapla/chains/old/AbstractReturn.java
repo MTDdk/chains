@@ -1,15 +1,14 @@
-package net.javapla.chains;
+package net.javapla.chains.old;
 
 import java.util.Optional;
 import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingConsumer;
 import net.javapla.chains.function.ThrowingFunction;
-import net.javapla.chains.newinterfaces.NormalReturn;
-import net.javapla.chains.newinterfaces.Return;
-import net.javapla.chains.newinterfaces.Work;
+import net.javapla.chains.interfaces.Return;
+import net.javapla.chains.interfaces.Work;
 
-abstract class AbstractReturn<R, E> extends AbstractChains<E/*NormalReturn<R>*/,R> implements Return<R,E> {
+abstract class AbstractReturn<R> extends AbstractChains<Return<R>,R> implements Return<R> {
 
     
     protected AbstractReturn(Queue<AutoCloseable> closeableStack) {
@@ -17,7 +16,7 @@ abstract class AbstractReturn<R, E> extends AbstractChains<E/*NormalReturn<R>*/,
     }
     
     @Override
-    public <T> Return<T,NormalReturn<T>> perform(ThrowingFunction<R,T> f) {
+    public <T> Return<T> perform(ThrowingFunction<R,T> f) {
         R r = internalExecute().get();
         return new InputReturnImpl<>(f, r, closeableStack);
     }

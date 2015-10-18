@@ -1,16 +1,15 @@
-package net.javapla.chains;
+package net.javapla.chains.old;
 
 import java.util.LinkedList;
 
 import net.javapla.chains.function.ThrowingConsumer;
 import net.javapla.chains.function.ThrowingFunction;
 import net.javapla.chains.function.ThrowingSupplier;
-import net.javapla.chains.newinterfaces.NormalReturn;
-import net.javapla.chains.newinterfaces.ResourceReturn;
-import net.javapla.chains.newinterfaces.Return;
-import net.javapla.chains.newinterfaces.Work;
+import net.javapla.chains.interfaces.ResourceReturn;
+import net.javapla.chains.interfaces.Return;
+import net.javapla.chains.interfaces.Work;
 
-class ResourceReturnImpl<R extends AutoCloseable> extends ReturnImpl<R, ResourceReturn<R>> implements ResourceReturn<R> {
+class ResourceReturnImpl<R extends AutoCloseable> extends ReturnImpl<R> implements ResourceReturn<R> {
 
     
     ResourceReturnImpl(ThrowingSupplier<R> r) {
@@ -24,7 +23,7 @@ class ResourceReturnImpl<R extends AutoCloseable> extends ReturnImpl<R, Resource
     }
     
     @Override
-    public <T> Return<T,NormalReturn<T>> perform(ThrowingFunction<R, T> f) {
+    public <T> Return<T> perform(ThrowingFunction<R, T> f) {
         R r = internalExecute().get();
         return new ResourceInputNormalReturnImpl<>(f, r, closeableStack);
     }

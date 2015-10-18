@@ -12,14 +12,14 @@ public class ExampleMain {
                 Try.perform(() -> 42)
                    .perform((Integer i)-> i+10)
                    .execute().get();
-        System.out.println(result); // 52
+        System.out.println(result); // Output: 52
         
         
         result = Try.with(() -> new TestResource())
                     .perform((TestResource stream) -> stream.increment(42) )
                     .execute() // closing the stream(s)
                     .get(); // Optional.get()
-        System.out.println(result); // Closed with result: 43
+        System.out.println(result); // Output: Closed with result: 43
         
         
         Try.with(() -> new TestResource())

@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import net.javapla.chains.Try;
+import net.javapla.chains.old.Try;
 
 import org.junit.After;
 import org.junit.BeforeClass;

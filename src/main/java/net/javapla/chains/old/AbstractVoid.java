@@ -1,12 +1,11 @@
-package net.javapla.chains;
+package net.javapla.chains.old;
 
 import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingRunnable;
 import net.javapla.chains.function.ThrowingSupplier;
-import net.javapla.chains.newinterfaces.NormalReturn;
-import net.javapla.chains.newinterfaces.Return;
-import net.javapla.chains.newinterfaces.Work;
+import net.javapla.chains.interfaces.Return;
+import net.javapla.chains.interfaces.Work;
 
 abstract class AbstractVoid extends AbstractChains<Work, Void> implements Work {
 
@@ -21,7 +20,7 @@ abstract class AbstractVoid extends AbstractChains<Work, Void> implements Work {
     }
     
     @Override
-    public <R> Return<R,NormalReturn<R>> perform(ThrowingSupplier<R> s) {
+    public <R> Return<R> perform(ThrowingSupplier<R> s) {
         internalExecute();
         return new ReturnImpl<>(s, closeableStack);
     }

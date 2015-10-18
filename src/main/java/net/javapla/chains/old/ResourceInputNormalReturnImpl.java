@@ -1,10 +1,10 @@
-package net.javapla.chains;
+package net.javapla.chains.old;
 
 import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingFunction;
 
-class ResourceInputNormalReturnImpl<P extends AutoCloseable, R, E> extends InputReturnImpl<P, R, E> {
+class ResourceInputNormalReturnImpl<P extends AutoCloseable, R> extends InputReturnImpl<P, R> {
     
     
     ResourceInputNormalReturnImpl(ThrowingFunction<P, R> r, P resource, Queue<AutoCloseable> closeableStack) {

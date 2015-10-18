@@ -1,11 +1,12 @@
-package net.javapla.chains;
+package net.javapla.chains.old;
 
 import java.util.Optional;
 import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingFunction;
+import net.javapla.chains.interfaces.Return;
 
-class InputReturnImpl<P, R, E> extends AbstractReturn<R, E/*NormalReturn<R>*/> {
+class InputReturnImpl<P, R> extends AbstractReturn<R> {
 
     protected P resource;
     protected ThrowingFunction<P, R> runner;
