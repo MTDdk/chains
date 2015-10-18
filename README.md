@@ -95,3 +95,6 @@ Only a few method signatures exists in **Chains**, each with a, hopefully, easil
 As it is clear in the examples the tool lacks in its current version chaining of exception handling. Whenever an exception occurs it must have an explicit method
 
 In the near future is should be possible to use the tool like in the last example, but letting all exceptions be handled either by their place in the stack (as in the first example), or bubble to the nearest explicit exception handling.
+
+##Get it
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.javapla.chains/chains/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.javapla.chains/chains)
