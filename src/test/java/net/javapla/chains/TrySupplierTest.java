@@ -1,6 +1,6 @@
 package net.javapla.chains;
 
-import static net.javapla.chains.old.Try.*;
+import static net.javapla.chains.Try.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 

@@ -4,9 +4,8 @@ import net.javapla.chains.executors.ExecuteReturn;
 import net.javapla.chains.function.ThrowingConsumer;
 import net.javapla.chains.function.ThrowingFunction;
 
-public interface Return<R> extends ExecuteReturn<R>, Exceptional<Return<R>> {
+public interface Return<R, E> extends ExecuteReturn<R>, Exceptional<E> {
 
     Work perform(ThrowingConsumer<R> c);
-    <T> Return<T> perform(ThrowingFunction<R, T> f);
-    
+    <T> Return<T,Return<T,E>> perform(ThrowingFunction<R, T> f);
 }

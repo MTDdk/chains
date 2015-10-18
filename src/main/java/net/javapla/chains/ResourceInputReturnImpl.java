@@ -4,10 +4,9 @@ import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingConsumer;
 import net.javapla.chains.function.ThrowingFunction;
-import net.javapla.chains.newinterfaces.NormalReturn;
-import net.javapla.chains.newinterfaces.ResourceReturn;
-import net.javapla.chains.newinterfaces.Return;
-import net.javapla.chains.newinterfaces.Work;
+import net.javapla.chains.interfaces.ResourceReturn;
+import net.javapla.chains.interfaces.Return;
+import net.javapla.chains.interfaces.Work;
 
 class ResourceInputReturnImpl<P extends AutoCloseable, R extends AutoCloseable> extends ResourceInputNormalReturnImpl<P, R, ResourceReturn<R>> implements ResourceReturn<R> {
     
@@ -29,7 +28,7 @@ class ResourceInputReturnImpl<P extends AutoCloseable, R extends AutoCloseable> 
     }
     
     @Override
-    public <T> Return<T,NormalReturn<T>> perform(ThrowingFunction<R, T> f) {
+    public <T> Return<T,Return<T,ResourceReturn<R>>> perform(ThrowingFunction<R, T> f) {
         R r = internalExecute().get();
         return new ResourceInputNormalReturnImpl<>(f, r, closeableStack);
     }

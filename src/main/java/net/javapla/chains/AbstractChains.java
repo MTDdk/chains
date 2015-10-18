@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.function.Consumer;
 
-import net.javapla.chains.newinterfaces.Exceptional;
+import net.javapla.chains.interfaces.Exceptional;
 
 abstract class AbstractChains<T, R> implements Exceptional<T> {
     
@@ -45,6 +45,7 @@ abstract class AbstractChains<T, R> implements Exceptional<T> {
     @SuppressWarnings("unchecked")
     public <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> t) {
         throwables.put(t, c);
+        System.out.println(this.getClass());
         return (T) this;
     }
     

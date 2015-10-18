@@ -4,9 +4,9 @@ import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingRunnable;
 import net.javapla.chains.function.ThrowingSupplier;
-import net.javapla.chains.newinterfaces.NormalReturn;
-import net.javapla.chains.newinterfaces.Return;
-import net.javapla.chains.newinterfaces.Work;
+import net.javapla.chains.interfaces.NormalReturn;
+import net.javapla.chains.interfaces.Return;
+import net.javapla.chains.interfaces.Work;
 
 abstract class AbstractVoid extends AbstractChains<Work, Void> implements Work {
 

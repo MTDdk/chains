@@ -4,10 +4,9 @@ import java.util.LinkedList;
 
 import net.javapla.chains.function.ThrowingRunnable;
 import net.javapla.chains.function.ThrowingSupplier;
-import net.javapla.chains.newinterfaces.NormalReturn;
-import net.javapla.chains.newinterfaces.ResourceReturn;
-import net.javapla.chains.newinterfaces.Return;
-import net.javapla.chains.newinterfaces.Work;
+import net.javapla.chains.interfaces.ResourceReturn;
+import net.javapla.chains.interfaces.Return;
+import net.javapla.chains.interfaces.Work;
 
 public interface Try {
 
@@ -21,7 +20,7 @@ public interface Try {
     static Work perform(ThrowingRunnable r) {
         return new WorkImpl(r);
     }
-    static <R> Return<R, NormalReturn<R>> perform(ThrowingSupplier<R> s) {
+    static <R,E> Return<R, Return<R,E>> perform(ThrowingSupplier<R> s) {
         return new ReturnImpl<>(s, new LinkedList<>());
     }
     
