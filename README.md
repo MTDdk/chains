@@ -70,7 +70,8 @@ If you only need to handle a single case of exception, because other exceptions 
 The same example with only a single exception handling:
 ```java
 Try
-  .with(() -> spec.getConnection().createStatement().executeQuery("SELECT * FROM table"))
+  .with(() -> spec.getConnection())
+  .with(conn -> conn.createStatement().executeQuery("SELECT * FROM table"))
   .perform((ResultSet result) -> {
       while(result.next()) {
           String something = result.getString(1);
@@ -84,9 +85,9 @@ This example only explicitly handles if any exceptions occur when reading from t
 ##Functionality
 Only a few method signatures exists in **Chains**, each with a, hopefully, easily understandable purpose.
 
-* `with` - 
-* `perform` -
-* `exception` -
+* `with` - takes a lambda outputting a resource. This resource can either be used in chain with another `with` to generate further resources or chained with `perform`.
+* `perform` - if in conjunction with a `with`, takes a resource to be used, or simply takes and executes a lambda of any kind. Can also handle lambdas which calculates results.
+* `exception` - the default behaviour is to handle all kinds of Throwables, but it can be used for a specific exception, or even performing the same lambda for multiple, explicit stated, exceptions.
 * `execute` - the very last part of the chain builder. Depending on the nature of the previous `perform` this call is either void or returns an `Optional`.
 
 
