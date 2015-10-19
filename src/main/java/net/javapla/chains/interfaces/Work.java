@@ -7,6 +7,6 @@ import net.javapla.chains.function.ThrowingSupplier;
 public interface Work extends ExecuteVoid, Exceptional<Work> {
 
     Work perform(ThrowingRunnable r);
-    <R> Return<R,NormalReturn<R>> perform(ThrowingSupplier<R> s);
+    <R,E> Return<R,Return<R,E>> perform(ThrowingSupplier<R> s);
     
 }

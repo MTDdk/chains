@@ -28,7 +28,7 @@ abstract class AbstractReturn<R, E> extends AbstractChains<E/*NormalReturn<R>*/,
     }
 
     @Override
-    public Optional<R> execute() throws RuntimeException {
+    public final Optional<R> execute() throws RuntimeException {
         try { return internalExecute(); }
         finally { closeAll();}
     }

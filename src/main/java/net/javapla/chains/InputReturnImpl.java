@@ -7,8 +7,8 @@ import net.javapla.chains.function.ThrowingFunction;
 
 class InputReturnImpl<P, R, E> extends AbstractReturn<R, E/*NormalReturn<R>*/> {
 
-    protected P resource;
-    protected ThrowingFunction<P, R> runner;
+    protected final P resource;
+    protected final ThrowingFunction<P, R> runner;
     InputReturnImpl(ThrowingFunction<P, R> f, P resource, Queue<AutoCloseable> closeableStack) {
         super(closeableStack);
         runner = f;

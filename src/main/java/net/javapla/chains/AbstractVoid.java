@@ -4,7 +4,6 @@ import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingRunnable;
 import net.javapla.chains.function.ThrowingSupplier;
-import net.javapla.chains.interfaces.NormalReturn;
 import net.javapla.chains.interfaces.Return;
 import net.javapla.chains.interfaces.Work;
 
@@ -21,13 +20,13 @@ abstract class AbstractVoid extends AbstractChains<Work, Void> implements Work {
     }
     
     @Override
-    public <R> Return<R,NormalReturn<R>> perform(ThrowingSupplier<R> s) {
+    public <R,E> Return<R,Return<R,E>> perform(ThrowingSupplier<R> s) {
         internalExecute();
         return new ReturnImpl<>(s, closeableStack);
     }
 
     @Override
-    public void execute() throws RuntimeException {
+    public final void execute() throws RuntimeException {
         try { internalExecute(); }
         finally { closeAll(); }
     }

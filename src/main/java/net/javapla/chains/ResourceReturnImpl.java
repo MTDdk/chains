@@ -9,7 +9,7 @@ import net.javapla.chains.interfaces.ResourceReturn;
 import net.javapla.chains.interfaces.Return;
 import net.javapla.chains.interfaces.Work;
 
-class ResourceReturnImpl<R extends AutoCloseable> extends ReturnImpl<R, ResourceReturn<R>> implements ResourceReturn<R> {
+final class ResourceReturnImpl<R extends AutoCloseable> extends ReturnImpl<R, ResourceReturn<R>> implements ResourceReturn<R> {
 
     
     ResourceReturnImpl(ThrowingSupplier<R> r) {

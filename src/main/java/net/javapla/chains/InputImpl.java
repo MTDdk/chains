@@ -7,8 +7,8 @@ import net.javapla.chains.function.ThrowingConsumer;
 
 class InputImpl<P> extends AbstractVoid {
     
-    protected P resource;
-    protected ThrowingConsumer<P> runner;
+    protected final P resource;
+    protected final ThrowingConsumer<P> runner;
     InputImpl(ThrowingConsumer<P> r, P resource, Queue<AutoCloseable> closeableStack) {
         super(closeableStack);
         runner = r;

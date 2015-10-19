@@ -4,6 +4,7 @@ import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingFunction;
 
+//TODO this might not actually be useful
 class ResourceInputNormalReturnImpl<P extends AutoCloseable, R, E> extends InputReturnImpl<P, R, E> {
     
     

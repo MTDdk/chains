@@ -6,9 +6,9 @@ import java.util.Queue;
 
 import net.javapla.chains.function.ThrowingRunnable;
 
-class WorkImpl extends AbstractVoid {
+final class WorkImpl extends AbstractVoid {
 
-    ThrowingRunnable runner;
+    protected final ThrowingRunnable runner;
     WorkImpl(ThrowingRunnable r, Queue<AutoCloseable> closeableStack) {
         super(closeableStack);
         runner = r;

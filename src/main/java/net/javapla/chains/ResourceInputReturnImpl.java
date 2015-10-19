@@ -8,7 +8,7 @@ import net.javapla.chains.interfaces.ResourceReturn;
 import net.javapla.chains.interfaces.Return;
 import net.javapla.chains.interfaces.Work;
 
-class ResourceInputReturnImpl<P extends AutoCloseable, R extends AutoCloseable> extends ResourceInputNormalReturnImpl<P, R, ResourceReturn<R>> implements ResourceReturn<R> {
+final class ResourceInputReturnImpl<P extends AutoCloseable, R extends AutoCloseable> extends ResourceInputNormalReturnImpl<P, R, ResourceReturn<R>> implements ResourceReturn<R> {
     
     
     ResourceInputReturnImpl(ThrowingFunction<P, R> r, P resource, Queue<AutoCloseable> closeableStack) {

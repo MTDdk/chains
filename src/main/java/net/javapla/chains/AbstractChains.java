@@ -34,7 +34,7 @@ abstract class AbstractChains<T, R> implements Exceptional<T> {
     
     @Override
     @SuppressWarnings("unchecked")
-    public <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> ... t) {
+    public final <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> ... t) {
         for (Class<S> clazz : t) {
             throwables.put(clazz, c);
         }
@@ -43,15 +43,14 @@ abstract class AbstractChains<T, R> implements Exceptional<T> {
     
     @Override
     @SuppressWarnings("unchecked")
-    public <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> t) {
+    public final <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> t) {
         throwables.put(t, c);
-        System.out.println(this.getClass());
         return (T) this;
     }
     
     @Override
     @SuppressWarnings("unchecked")
-    public T exception(Consumer<? super Throwable> c) {
+    public final T exception(Consumer<? super Throwable> c) {
         throwables.put(null, c);
         return (T) this;
     }
