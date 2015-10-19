@@ -16,7 +16,7 @@ try (resource) {
 } catch (SQLException e){ System.out.println(e.getMessage()); }
 ``` 
 
-However, the this sparkled thoughts of further improvements to the try-with-resources paradigm, so we tried to device a chaining tool that was lambda-first, but also made it possible to catch specific exceptions anywhere in the chain.
+However, this incited thoughts of further improvements to the try-with-resources paradigm, so we tried to device a chaining tool that was lambda-first, but also made it possible to catch specific exceptions anywhere in the chain.
 
 Especially the part with *catching anywhere in the chain* can be quite verbose in traditional Java.
 See this example:
@@ -90,6 +90,10 @@ Only a few method signatures exists in **Chains**, each with a, hopefully, easil
 * `exception` - the default behaviour is to handle all kinds of Throwables, but it can be used for a specific exception, or even performing the same lambda for multiple, explicit stated, exceptions.
 * `execute` - the very last part of the chain builder. Depending on the nature of the previous `perform` this call is either void or returns an `Optional`.
 
+##Performance
+Simple and totally unscientific use of `System.nanoTime()` indicates that **Chains** runtime is very close to native try-with-resources.
+
+Test it out for yourselves!
 
 ##Caveat
 As it is clear in the examples the tool lacks in its current version chaining of exception handling. Whenever an exception occurs it must have an explicit method
