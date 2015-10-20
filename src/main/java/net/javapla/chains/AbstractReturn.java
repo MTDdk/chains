@@ -11,18 +11,18 @@ import net.javapla.chains.interfaces.Work;
 abstract class AbstractReturn<R, E> extends AbstractChains<E/*NormalReturn<R>*/,R> implements Return<R,E> {
 
     
-    protected AbstractReturn(Queue<AutoCloseable> closeableStack) {
+    protected AbstractReturn(final Queue<AutoCloseable> closeableStack) {
         super(closeableStack);
     }
     
     @Override
-    public <T> Return<T,Return<T,E>> perform(ThrowingFunction<R,T> f) {
+    public <T> Return<T,Return<T,E>> perform(final ThrowingFunction<R,T> f) {
         R r = internalExecute().get();
         return new InputReturnImpl<>(f, r, closeableStack);
     }
 
     @Override
-    public Work perform(ThrowingConsumer<R> c) {
+    public Work perform(final ThrowingConsumer<R> c) {
         R r = internalExecute().get();
         return new InputImpl<>(c, r, closeableStack);
     }

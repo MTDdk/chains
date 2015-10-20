@@ -5,5 +5,5 @@ package net.javapla.chains.function;
 //R = return value
 public interface ThrowingFunction<P,R> {
 
-    R apply(P p) throws Throwable;
+    R apply(final P p) throws Throwable;
 }

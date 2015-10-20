@@ -11,11 +11,11 @@ import net.javapla.chains.interfaces.Exceptional;
 abstract class AbstractChains<T, R> implements Exceptional<T> {
     
     protected final Queue<AutoCloseable> closeableStack;
-    protected AbstractChains(Queue<AutoCloseable> closeableStack) {
+    protected AbstractChains(final Queue<AutoCloseable> closeableStack) {
         this.closeableStack = closeableStack;
     }
     
-    protected void addToStack(AutoCloseable a) {
+    protected void addToStack(final AutoCloseable a) {
         closeableStack.add(a);
     }
     protected void closeAll() {
@@ -34,7 +34,7 @@ abstract class AbstractChains<T, R> implements Exceptional<T> {
     
     @Override
     @SuppressWarnings("unchecked")
-    public final <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> ... t) {
+    public final <S extends Throwable> T exception(final Consumer<? super Throwable> c, final Class<S> ... t) {
         for (Class<S> clazz : t) {
             throwables.put(clazz, c);
         }
@@ -43,19 +43,19 @@ abstract class AbstractChains<T, R> implements Exceptional<T> {
     
     @Override
     @SuppressWarnings("unchecked")
-    public final <S extends Throwable> T exception(Consumer<? super Throwable> c, Class<S> t) {
+    public final <S extends Throwable> T exception(final Consumer<? super Throwable> c, final Class<S> t) {
         throwables.put(t, c);
         return (T) this;
     }
     
     @Override
     @SuppressWarnings("unchecked")
-    public final T exception(Consumer<? super Throwable> c) {
+    public final T exception(final Consumer<? super Throwable> c) {
         throwables.put(null, c);
         return (T) this;
     }
     
-    protected final void handleException(Throwable e) throws RuntimeException {
+    protected final void handleException(final Throwable e) throws RuntimeException {
         try {
             final Class<? extends Throwable> exceptionClass = e.getClass();
             if (throwables.containsKey(exceptionClass)) {

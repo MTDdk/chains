@@ -6,6 +6,6 @@ public interface ResourceReturn<R extends AutoCloseable> extends Return<R,Resour
 
 //    Work perform(ThrowingConsumer<R> c);
 //    <T> Return<T> perform(ThrowingFunction<R, T> f);
-    <T extends AutoCloseable> ResourceReturn<T> with(ThrowingFunction<R, T> f);
+    <T extends AutoCloseable> ResourceReturn<T> with(final ThrowingFunction<R, T> f);
 
 }

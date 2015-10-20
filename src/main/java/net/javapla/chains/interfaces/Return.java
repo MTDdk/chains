@@ -6,6 +6,6 @@ import net.javapla.chains.function.ThrowingFunction;
 
 public interface Return<R, E> extends ExecuteReturn<R>, Exceptional<E> {
 
-    Work perform(ThrowingConsumer<R> c);
-    <T> Return<T,Return<T,E>> perform(ThrowingFunction<R, T> f);
+    Work perform(final ThrowingConsumer<R> c);
+    <T> Return<T,Return<T,E>> perform(final ThrowingFunction<R, T> f);
 }

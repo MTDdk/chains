@@ -9,7 +9,7 @@ class InputReturnImpl<P, R, E> extends AbstractReturn<R, E/*NormalReturn<R>*/> {
 
     protected final P resource;
     protected final ThrowingFunction<P, R> runner;
-    InputReturnImpl(ThrowingFunction<P, R> f, P resource, Queue<AutoCloseable> closeableStack) {
+    InputReturnImpl(final ThrowingFunction<P, R> f, final P resource, final Queue<AutoCloseable> closeableStack) {
         super(closeableStack);
         runner = f;
         this.resource = resource;

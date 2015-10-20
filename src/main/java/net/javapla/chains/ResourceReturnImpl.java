@@ -12,24 +12,24 @@ import net.javapla.chains.interfaces.Work;
 final class ResourceReturnImpl<R extends AutoCloseable> extends ReturnImpl<R, ResourceReturn<R>> implements ResourceReturn<R> {
 
     
-    ResourceReturnImpl(ThrowingSupplier<R> r) {
+    ResourceReturnImpl(final ThrowingSupplier<R> r) {
         super(r, new LinkedList<>());
     }
     
     @Override
-    public Work perform(ThrowingConsumer<R> c) {
+    public Work perform(final ThrowingConsumer<R> c) {
         R r = internalExecute().get();
         return new ResourceInputImpl<>(c, r, closeableStack);
     }
     
     @Override
-    public <T> Return<T,Return<T,ResourceReturn<R>>> perform(ThrowingFunction<R, T> f) {
+    public <T> Return<T,Return<T,ResourceReturn<R>>> perform(final ThrowingFunction<R, T> f) {
         R r = internalExecute().get();
         return new ResourceInputNormalReturnImpl<>(f, r, closeableStack);
     }
 
     @Override
-    public <T extends AutoCloseable> ResourceReturn<T> with(ThrowingFunction<R,T> f) {
+    public <T extends AutoCloseable> ResourceReturn<T> with(final ThrowingFunction<R,T> f) {
         R r = internalExecute().get();
         return new ResourceInputReturnImpl<>(f, r, closeableStack);
     }

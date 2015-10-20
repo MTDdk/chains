@@ -9,18 +9,18 @@ import net.javapla.chains.interfaces.Work;
 
 abstract class AbstractVoid extends AbstractChains<Work, Void> implements Work {
 
-    protected AbstractVoid(Queue<AutoCloseable> closeableStack) {
+    protected AbstractVoid(final Queue<AutoCloseable> closeableStack) {
         super(closeableStack);
     }
     
     @Override
-    public Work perform(ThrowingRunnable r) {
+    public Work perform(final ThrowingRunnable r) {
         internalExecute();
         return new WorkImpl(r, closeableStack);
     }
     
     @Override
-    public <R,E> Return<R,Return<R,E>> perform(ThrowingSupplier<R> s) {
+    public <R,E> Return<R,Return<R,E>> perform(final ThrowingSupplier<R> s) {
         internalExecute();
         return new ReturnImpl<>(s, closeableStack);
     }

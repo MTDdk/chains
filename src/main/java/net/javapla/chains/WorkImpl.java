@@ -9,11 +9,11 @@ import net.javapla.chains.function.ThrowingRunnable;
 final class WorkImpl extends AbstractVoid {
 
     protected final ThrowingRunnable runner;
-    WorkImpl(ThrowingRunnable r, Queue<AutoCloseable> closeableStack) {
+    WorkImpl(final ThrowingRunnable r, final Queue<AutoCloseable> closeableStack) {
         super(closeableStack);
         runner = r;
     }
-    WorkImpl(ThrowingRunnable r) {
+    WorkImpl(final ThrowingRunnable r) {
         this(r, new LinkedList<>());
     }
 

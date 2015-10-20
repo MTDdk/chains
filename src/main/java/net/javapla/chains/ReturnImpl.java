@@ -8,7 +8,7 @@ import net.javapla.chains.function.ThrowingSupplier;
 class ReturnImpl<R, E> extends AbstractReturn<R, E/*NormalReturn<R>*/> {
 
     protected final ThrowingSupplier<R> runner;
-    ReturnImpl(ThrowingSupplier<R> r, Queue<AutoCloseable> closeableStack) {
+    ReturnImpl(final ThrowingSupplier<R> r, final Queue<AutoCloseable> closeableStack) {
         super(closeableStack);
         runner = r;
     }

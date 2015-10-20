@@ -11,7 +11,7 @@ public interface Exceptional<R> {
      * @param t
      * @return
      */
-    <T extends Throwable> R exception(Consumer<? super Throwable> c, @SuppressWarnings("unchecked") Class<T> ... t);
+    <T extends Throwable> R exception(final Consumer<? super Throwable> c, @SuppressWarnings("unchecked") final Class<T> ... t);
     
     /**
      * Single parameter to reduce overhead
@@ -19,14 +19,14 @@ public interface Exceptional<R> {
      * @param t
      * @return
      */
-    <T extends Throwable> R exception(Consumer<? super Throwable> c, Class<T> t);
+    <T extends Throwable> R exception(final Consumer<? super Throwable> c, final Class<T> t);
     
     /**
      * Catch-all
      * @param c
      * @return
      */
-    R exception(Consumer<? super Throwable> c);
+    R exception(final Consumer<? super Throwable> c);
     
     //R catchAll(Consumer<? super Throwable> c);
     

@@ -8,7 +8,7 @@ import net.javapla.chains.function.ThrowingFunction;
 class ResourceInputNormalReturnImpl<P extends AutoCloseable, R, E> extends InputReturnImpl<P, R, E> {
     
     
-    ResourceInputNormalReturnImpl(ThrowingFunction<P, R> r, P resource, Queue<AutoCloseable> closeableStack) {
+    ResourceInputNormalReturnImpl(final ThrowingFunction<P, R> r, final P resource, final Queue<AutoCloseable> closeableStack) {
         super(r, resource, closeableStack);
         addToStack(resource);
     }

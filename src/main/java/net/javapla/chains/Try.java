@@ -11,7 +11,7 @@ import net.javapla.chains.interfaces.Work;
 public interface Try {
 
     //Try-with-resources
-    static <A extends AutoCloseable> ResourceReturn<A> with(ThrowingSupplier<A> s) {
+    static <A extends AutoCloseable> ResourceReturn<A> with(final ThrowingSupplier<A> s) {
         return new ResourceReturnImpl<>(s);
     }
     
@@ -20,7 +20,7 @@ public interface Try {
     static Work perform(ThrowingRunnable r) {
         return new WorkImpl(r);
     }
-    static <R,E> Return<R, Return<R,E>> perform(ThrowingSupplier<R> s) {
+    static <R,E> Return<R, Return<R,E>> perform(final ThrowingSupplier<R> s) {
         return new ReturnImpl<>(s, new LinkedList<>());
     }
     
