@@ -90,7 +90,7 @@ Only a few method signatures exists in **Chains**, each with a, hopefully, easil
 * `exception` - the default behaviour is to handle all kinds of Throwables, but it can be used for a specific exception, or even performing the same lambda for multiple, explicit stated, exceptions.
 * `execute` - the very last part of the chain builder. Depending on the nature of the previous `perform` this call is either void or returns an `Optional`.
 
-See the [ExampleMain](src/examples/java/ExampleMain.java) for a sample implementation.
+See the [ExampleMain](src/examples/java/chains/ExampleMain.java) for a sample implementation.
 
 ##Performance
 Simple and totally unscientific use of `System.nanoTime()` indicates that **Chains** runtime is very close to native try-with-resources.
